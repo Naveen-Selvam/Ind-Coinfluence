@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Alert } from 'antd';
 import { Auth } from 'aws-amplify';
 import logo from '../images/logo.svg';
 import 'antd/dist/antd.css';
@@ -49,27 +49,29 @@ const ForgotPassword = (props) => {
           onFinishFailed={onFinishFailed}
         >
           <h2>Verify your email</h2>
-
-          <Form.Item
-            label="Email"
-            name="email"
-            rules={[
-              {
-                type: 'email',
-                message: 'The input is not valid E-mail!',
-              },
-              {
-                required: true,
-                message: 'Please input your E-mail!',
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-
+          {
+            !verficationCode &&
+              <Form.Item
+                label="Email"
+                name="email"
+                rules={[
+                  {
+                    type: 'email',
+                    message: 'The input is not valid E-mail!',
+                  },
+                  {
+                    required: true,
+                    message: 'Please input your E-mail!',
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            }
             {
               verficationCode && 
               <div>
+                <Alert banner message="Verification sent to Email-id" type="success" showIcon />
                 <Form.Item
                   label="Verification Code"
                   name="verificationCode"
