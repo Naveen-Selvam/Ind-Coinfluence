@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Alert } from 'antd';
 import { Link } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 import logo from '../images/logo.svg';
@@ -15,18 +15,14 @@ const Login = (props) => {
       })
       if(Result) {
         props.history.push({
-          pathname: '/home',
-          state: { detail: 'Logged in Succesfully' }
+          pathname: '/login',
+          state: { detail: 'Password updated Successfully' }
         });
       }
     } catch (error) {
       setErrors(true);
     }
   }
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
 
   return (
     <div className='form-background'>
@@ -41,11 +37,9 @@ const Login = (props) => {
             remember: true,
           }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
         >
           {errors && <h3>Invalid Email-id or Password!</h3>}
           <h2>Sign In</h2>
-
           <Form.Item
             label="Email"
             name="email"

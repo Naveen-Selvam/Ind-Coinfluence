@@ -52,8 +52,6 @@ body {
   background-size: cover;
   background-position: center bottom 10%;
 
-
-
   .form-container {
     position: absolute;
     top: 50%;
@@ -152,6 +150,10 @@ Form {
       color: var(--form-label-color);
     }
   }
+
+  .ant-alert-banner {
+    width: fit-content;
+  } 
 
   .ant-btn-primary {
     color: white;

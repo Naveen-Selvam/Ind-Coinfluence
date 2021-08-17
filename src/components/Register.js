@@ -12,7 +12,7 @@ const Register = (props) => {
   const onFinish = async function(values){
     try {
       const Result = await Auth.signUp({
-        username: values.username,
+        username: values.username.split(' ').join('_'),
         password: values.password,
         attributes: {
           email: values.email,

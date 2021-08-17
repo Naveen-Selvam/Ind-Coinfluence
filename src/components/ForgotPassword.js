@@ -20,7 +20,10 @@ const ForgotPassword = (props) => {
         values.verificationCode,
         values.newPassword
       )
-      .then((res)=> props.history.push('/login'))
+      .then((res)=> props.history.push({
+        pathname: '/login',
+        state: { detail: 'Logged in Succesfully' }
+      }))
       .catch((err)=>{console.log(err)});
     }
   }
