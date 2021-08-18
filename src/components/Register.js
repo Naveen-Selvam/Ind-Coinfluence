@@ -1,15 +1,22 @@
-import React,{useState} from 'react';
-import { Form, Input, Button } from 'antd';
+import React,{useState, useEffect} from 'react';
+import { Form, Input, Button, Alert } from 'antd';
 import { Auth } from 'aws-amplify';
 import { Link } from 'react-router-dom';
-import logo from '../images/logo.svg'; 
+import logo from '../images/logo.svg';
 import { CardProfile } from './profilePic';
 import 'antd/dist/antd.css';
 
 const Register = (props) => {
-  const [file, setFile] = useState('')
+  const [file, setFile] = useState('');
+  const [error, setError] = useState('');
 
-  const onFinish = async function(values){
+  useEffect(()=>{
+    setTimeout(()=>{
+      setError('');
+    },5000);
+  },[error]);
+
+  const onFinish = async function(values) {
     try {
       const Result = await Auth.signUp({
         username: values.username.split(' ').join('_'),
@@ -19,7 +26,7 @@ const Register = (props) => {
           address: values.city,
           picture: file,
         }
-      })
+      });
       if(Result) {
         props.history.push({
           pathname: '/login',
@@ -27,17 +34,17 @@ const Register = (props) => {
         });
       }
     } catch (error) {
-      console.log(error);
+      setError(error.message);
     }
-  }
+  };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
   const uploadFile = (data) => {
-    setFile(data)
-  }
+    setFile(data);
+  };
 
   return (
     <div className='form-background'>
@@ -46,7 +53,6 @@ const Register = (props) => {
           <img src={logo} alt='logo' className='logo__image'/>
           <h1 className='logo__title'>COINFLUENCE</h1>
         </div>
-
         <Form
           name="basic"
           initialValues={{
@@ -59,6 +65,15 @@ const Register = (props) => {
             <h2>Sign Up</h2>
             <CardProfile uploadFile={uploadFile}/>
           </div>
+          {
+            error &&
+            <Alert
+              banner
+              message={error}
+              type='error'
+              showIcon
+            />
+          }
           <Form.Item
             label="Name"
             name="username"
@@ -67,8 +82,8 @@ const Register = (props) => {
                 required: true,
                 message: 'Please enter your name!',
               },
-              { 
-                min: 5, message: 'Username must be minimum 5 characters.' 
+              {
+                min: 5, message: 'Username must be minimum 5 characters.'
               },
             ]}
           >
@@ -113,9 +128,9 @@ const Register = (props) => {
                 required: true,
                 message: 'Enter your password!',
               },
-              { 
-                min: 8, 
-                message: 'Password must be minimum 8 characters.' 
+              {
+                min: 8,
+                message: 'Password must be minimum 8 characters.'
               },
             ]}
           >
@@ -129,15 +144,10 @@ const Register = (props) => {
           </Form.Item>
 
           <h5>Already have an account? <Link to='/login'>Click here</Link></h5>
-          <div className='form-container-socialLinks'>
-            <h4><a href='https://www.youtube.com/' target='_blank'>Youtube</a></h4>
-            <h4><a href='https://www.instagram.com/accounts/login/' target='_blank'>Instagram</a></h4>
-            <h4><a>Tiktok</a></h4>
-          </div>
         </Form>
       </div>
     </div>
   );
 };
 
-export default Register
+export default Register;

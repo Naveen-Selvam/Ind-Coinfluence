@@ -1,18 +1,18 @@
-import React,{useState} from 'react';
+import React,{ useState } from 'react';
 import { Form, Input, Button, Alert } from 'antd';
 import { Auth } from 'aws-amplify';
 import logo from '../images/logo.svg';
 import 'antd/dist/antd.css';
 
 const ForgotPassword = (props) => {
-  const [verficationCode, setVerificationCode] = useState(false)
+  const [verficationCode, setVerificationCode] = useState(false);
+  const [error, setError] = useState('');
 
   const onFinish = (values) => {
-  
     if(!verficationCode) {
       Auth.forgotPassword(values.email)
-      .then((res)=> setVerificationCode(!verficationCode))
-      .catch((err)=>{console.log(err)});
+        .then(()=> setVerificationCode(!verficationCode))
+        .catch((err)=>{console.log(err);});
     }
     else {
       Auth.forgotPasswordSubmit(
@@ -20,13 +20,13 @@ const ForgotPassword = (props) => {
         values.verificationCode,
         values.newPassword
       )
-      .then((res)=> props.history.push({
-        pathname: '/login',
-        state: { detail: 'Logged in Succesfully' }
-      }))
-      .catch((err)=>{console.log(err)});
+        .then(()=> props.history.push({
+          pathname: '/login',
+          state: { detail: 'Updated Password Succesfully' }
+        }))
+        .catch((err)=>setError(err.message));
     }
-  }
+  };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -41,7 +41,7 @@ const ForgotPassword = (props) => {
           <h1 className='logo__title'>COINFLUENCE</h1>
         </div>
         <Form
-          name="basic"
+          name='basic'
           initialValues={{
             remember: true,
           }}
@@ -49,29 +49,31 @@ const ForgotPassword = (props) => {
           onFinishFailed={onFinishFailed}
         >
           <h2>Verify your email</h2>
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              {
+                type: 'email',
+                message: 'The input is not valid E-mail!',
+              },
+              {
+                required: true,
+                message: 'Please input your E-mail!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
           {
-            !verficationCode &&
-              <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                  {
-                    type: 'email',
-                    message: 'The input is not valid E-mail!',
-                  },
-                  {
-                    required: true,
-                    message: 'Please input your E-mail!',
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            }
-            {
-              verficationCode && 
+            verficationCode &&
               <div>
-                <Alert banner message="Verification sent to Email-id" type="success" showIcon />
+                <Alert
+                  banner
+                  message={error ? error : 'Verification code sent to Email-id'}
+                  type={error ? 'error' : 'success'}
+                  showIcon
+                />
                 <Form.Item
                   label="Verification Code"
                   name="verificationCode"
@@ -120,7 +122,7 @@ const ForgotPassword = (props) => {
                   <Input.Password />
                 </Form.Item>
               </div>
-            }
+          }
 
           <Form.Item>
             <Button type="primary" htmlType="submit">
@@ -131,6 +133,6 @@ const ForgotPassword = (props) => {
       </div>
     </div>
   );
-}
+};
 
 export default ForgotPassword;

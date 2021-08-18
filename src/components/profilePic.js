@@ -7,31 +7,31 @@ const ImgUpload =({onChange, src}) => {
     <div className='avatar'>
       <label>
         <div>
-          <Avatar 
-            size={100} 
-            icon={<UserOutlined />} 
-            src={src}  
+          <Avatar
+            size={100}
+            icon={<UserOutlined />}
+            src={src}
             style={{ backgroundColor: '#FF385C'}}
           />
         </div>
-        <input 
-          id="photo-upload" 
-          type="file" 
-          name="myImage" 
-          accept="image/png, image/gif, image/jpeg" 
+        <input
+          id="photo-upload"
+          type="file"
+          name="myImage"
+          accept="image/png, image/gif, image/jpeg"
           onChange={onChange}
-        /> 
+        />
         <label>Upload Photo</label>
       </label>
     </div>
   );
-}
+};
 
 export class CardProfile extends React.Component {
   constructor(props) {
     super(props);
-      this.state = {
-        file: '',
+    this.state = {
+      file: '',
     };
   }
   photoUpload (e) {
@@ -41,15 +41,15 @@ export class CardProfile extends React.Component {
       file: URL.createObjectURL(file),
     });
   }
-  
+
   render() {
-    this.props.uploadFile(this.state.file)
+    this.props.uploadFile(this.state.file);
     return (
       <div>
         {
           <ImgUpload onChange={(e)=>this.photoUpload(e)} src={this.state.file}/>
         }
       </div>
-    )
+    );
   }
 }

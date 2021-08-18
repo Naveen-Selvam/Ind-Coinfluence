@@ -1,7 +1,7 @@
 import React,{ useState, useEffect} from 'react';
 import { Auth } from 'aws-amplify';
 import { Route, Redirect } from 'react-router-dom';
-import Home from './components/Home';
+import Profile from './components/Profile';
 import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
@@ -22,15 +22,14 @@ const App = () => {
 
   return (
     <div className='main'>
-      <Route path="/" exact component={Login} />
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
       <Route path='/forgotpassword' exact component={ForgotPassword} />
 
       {
         isAuthenticated 
-        ? <Route path="/home" exact component={Home} />
-        : <Redirect to='/'/>
+        ? <Route path="/profile" exact component={Profile} />
+        : <Redirect to='/login'/>
       }
       
     </div>

@@ -60,7 +60,7 @@ body {
     background-color: var(--pri-background-color);
     padding-left: size(22);
     height: 100%;
-    width: size(350);
+    width: size(414);
 
     &-avatar {
       display: flex;
@@ -71,24 +71,11 @@ body {
       }
     }
 
-    &-socialLinks {
-      display: flex;
-      justify-content: space-evenly;
-    }
-
     h3 {
       font-size: size(12);
       color: var(--warning-color);
       text-align: center;
     }
-  }
-
-  h4 {
-    margin-top: size(7);
-    padding: size(5);
-    font-size: size(12);
-    border: size(2) solid var(--form-placeholder-color);
-    cursor: pointer;
   }
 }
 
@@ -111,6 +98,8 @@ Form {
   }
 
   .ant-form-item {
+    display: block;
+
     ::before, ::after {
       display: none;
     }
@@ -152,7 +141,7 @@ Form {
   }
 
   .ant-alert-banner {
-    width: fit-content;
+    width: size(280);
   } 
 
   .ant-btn-primary {
