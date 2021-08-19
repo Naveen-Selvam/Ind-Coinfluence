@@ -8,6 +8,9 @@ body {
   .form-container {
     background-image: url(#fff);
   }
+  .ant-form {
+    padding-right: size(40);
+  }
 }
 
 .main {
@@ -17,23 +20,15 @@ body {
 }
 
 .logo {
-  position: absolute;
-  top: size(20);
-  left: size(85);
-
-  &__image {
-    position: relative;
-    left: 20.31%;
-    right: 20.31%;
-    top: 10.31%;
-  }
+  display: flex;
+  align-items: center;
+  margin: size(20);
 
   &__title {
-    position: relative;
     font-size: size(14);
     color: var(--form-button-color);
-    left: size(65);
-    bottom: size(30);
+    padding-left: size(5);
+    padding-top: size(5);
   }
 }
 
@@ -50,16 +45,12 @@ body {
   background-repeat: no-repeat;
   height: 100%;
   background-size: cover;
-  background-position: center bottom 10%;
+  overflow-y: auto;
 
   .form-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    margin: auto;
     background-color: var(--pri-background-color);
-    padding-left: size(22);
-    height: 100%;
+    min-height: 100%;
     width: size(414);
 
     &-avatar {
@@ -79,13 +70,12 @@ body {
   }
 }
 
-Form {
-  margin: 0;
-  position: absolute;
-  top: 55%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+.ant-form {
+  margin-top: size(10);
+  padding-left: 30px;
+}
 
+Form {
   h2 {
     font-size: size(16);
     color: var(--form-label-color);
@@ -109,7 +99,7 @@ Form {
     }
 
     .ant-input {
-      width: size(300);
+      width: size(320);
       border: none;
       outline: none;
       line-height: size(20);
@@ -117,6 +107,7 @@ Form {
 
       &-suffix {
         margin: size(0);
+        transform: translate(-16px, -5px);
       }
 
       &-password {
@@ -131,7 +122,7 @@ Form {
       }
     }
 
-    &-label {
+    label {
       padding-right: size(10);
       line-height: size(18);
       font-size: size(16);
@@ -145,7 +136,7 @@ Form {
   } 
 
   .ant-btn-primary {
-    color: white;
+    color: var(--pri-background-color);
     border: size(0);
     margin-top: size(10);
     width: size(320);
@@ -156,7 +147,7 @@ Form {
     cursor: pointer;
 
     &:hover, &:focus {
-      color: #fff;
+      color: var(--pri-background-color);
       background: var(--form-button-color);
     }
   }

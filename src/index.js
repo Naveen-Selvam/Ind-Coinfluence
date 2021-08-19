@@ -13,7 +13,7 @@ Amplify.configure({
     userPoolId: config.cognito.USER_POOL_ID,
     userPoolWebClientId: config.cognito.APP_CLIENT_ID
   }
-})
+});
 
 ReactDOM.render(
   <BrowserRouter>

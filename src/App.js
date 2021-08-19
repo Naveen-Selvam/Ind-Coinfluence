@@ -1,39 +1,35 @@
-import React,{ useState, useEffect} from 'react';
-import { Auth } from 'aws-amplify';
+import React,{ useState } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import Profile from './components/Profile';
+import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
 
 const App = () => {
-  const [isAuthenticated, setisAuthenticated] = useState(false)
+  const [isAuthenticated, setisAuthenticated] = useState(Object.keys(localStorage).length);
 
-  useEffect(async () => {
-    try {
-      const session = await Auth.currentSession();
-      if(session){
-        setisAuthenticated(true);
-      }
-    } catch(error) {
-      console.log(error);
-    }
-  },[])
+  const authenticationStatus = () => {
+    setisAuthenticated(true);
+  };
 
   return (
     <div className='main'>
-      <Route path="/login" exact component={Login} />
+      <Route
+        path="/login"
+        exact
+        render={(props) => <Login {...props} authenticationStatus={authenticationStatus} />}
+      />
       <Route path="/register" exact component={Register} />
       <Route path='/forgotpassword' exact component={ForgotPassword} />
 
       {
-        isAuthenticated 
-        ? <Route path="/profile" exact component={Profile} />
-        : <Redirect to='/login'/>
+        !isAuthenticated
+          ? <Redirect to='/login'/>
+          : <Route path="/dashboard" exact component={Dashboard} />
       }
-      
-    </div>
-  )
-}
 
-export default App
+    </div>
+  );
+};
+
+export default App;

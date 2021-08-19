@@ -2,8 +2,9 @@ import React,{useState, useEffect} from 'react';
 import { Auth } from 'aws-amplify';
 import { Alert } from 'antd';
 
-const Profile = (props) => {
+const Dashboard = (props) => {
   const [alertMsgStatus, setAlertMsgStatus] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(()=>{
     if(props.location.state) {
@@ -19,12 +20,13 @@ const Profile = (props) => {
       await Auth.signOut()
         .then(()=>{props.history.push('/login');});
     } catch (error){
-      console.log(error);
+      setError(error);
     }
   };
 
   return (
     <div>
+      {error && <h1>{error}</h1>}
       {
         alertMsgStatus &&
         <Alert
@@ -34,7 +36,7 @@ const Profile = (props) => {
           showIcon
         />
       }
-      Welcome home
+      <h1>Welcome to the coinfluence application</h1>
       <button onClick={handleLogout}>
         Logout
       </button>
@@ -42,4 +44,4 @@ const Profile = (props) => {
   );
 };
 
-export default Profile;
+export default Dashboard;

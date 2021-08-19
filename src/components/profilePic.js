@@ -8,7 +8,7 @@ const ImgUpload =({onChange, src}) => {
       <label>
         <div>
           <Avatar
-            size={100}
+            size={80}
             icon={<UserOutlined />}
             src={src}
             style={{ backgroundColor: '#FF385C'}}
