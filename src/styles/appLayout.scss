@@ -188,11 +188,12 @@ Form {
 
   &__box {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 
   &__image {
     margin-top: size(30);
+    border-radius: size(30);
     width: size(150);
     height: size(200);
   }
