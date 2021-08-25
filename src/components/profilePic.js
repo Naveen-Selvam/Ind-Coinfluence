@@ -18,7 +18,7 @@ const ImgUpload =({onChange, src}) => {
           id="photo-upload"
           type="file"
           name="myImage"
-          accept="image/png, image/gif, image/jpeg"
+          accept="image/png, image/gif, image/jpeg, image/jpg"
           onChange={onChange}
         />
         <label>Upload Photo</label>

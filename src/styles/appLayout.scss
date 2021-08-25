@@ -2,6 +2,9 @@ body {
   font-family: 'Manrope', sans-serif;
   margin: size(0);
   padding: size(0);
+  background-image: url(../images/bg.svg);
+  height: 100%;
+  background-size: cover;
 }
 
 @media only screen and (max-width: size(550)) {
@@ -16,7 +19,7 @@ body {
 .main {
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .logo {
@@ -39,34 +42,26 @@ body {
     display: none;
   }
 }
-  
-.form-background {
-  background-image: url(../images/bg.svg);
-  background-repeat: no-repeat;
-  height: 100%;
-  background-size: cover;
-  overflow-y: auto;
 
-  .form-container {
-    margin: auto;
-    background-color: var(--pri-background-color);
-    min-height: 100%;
-    width: size(414);
+.form-container {
+  margin: auto;
+  background-color: var(--pri-background-color);
+  min-height: 100%;
+  width: size(414);
 
-    &-avatar {
-      display: flex;
-      justify-content: space-between;
+  &-avatar {
+    display: flex;
+    justify-content: space-between;
 
-      h2 {
-        margin-top: size(30);
-      }
+    h2 {
+      margin-top: size(30);
     }
+  }
 
-    h3 {
-      font-size: size(12);
-      color: var(--warning-color);
-      text-align: center;
-    }
+  h3 {
+    font-size: size(12);
+    color: var(--warning-color);
+    text-align: center;
   }
 }
 
@@ -160,5 +155,45 @@ Form {
     &:hover {
       color: var(--form-button-color)
     }
+  }
+}
+
+.welcome__container {
+  padding: size(30);
+
+  .welcome__header {
+    display: flex;
+    justify-content: space-between;
+
+    h4 {
+      font-size: size(20);
+      font-weight: 700;
+    }
+
+    .anticon {
+      padding-top: size(10);
+    }
+  }
+
+  &__greeting {
+    font-size: size(40);
+    font-weight: 900;
+    padding-top: size(100);
+  }
+
+  &__content {
+    font-size: size(18);
+    font-weight: 700;
+  }
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__image {
+    margin-top: size(30);
+    width: size(150);
+    height: size(200);
   }
 }

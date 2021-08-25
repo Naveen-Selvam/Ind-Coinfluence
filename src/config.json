@@ -2,6 +2,13 @@
   "cognito": {
     "REGION": "us-east-1",
     "USER_POOL_ID": "us-east-1_K9sXCqON3",
-    "APP_CLIENT_ID": "146n52g3op3utq29h14p4eks0e"
+    "APP_CLIENT_ID": "146n52g3op3utq29h14p4eks0e",
+    "IDENTITY_POOL_ID": "us-east-1:c0fdb05b-7083-401c-8e96-8553f65ab718",
+    "SECRET_KEY": "5wlKRALi9cVUNx+0EPHGxbu4btB/D/sL2nwxMgFV",
+    "ACCESS_KEY_ID": "AKIAR3EYYXQBYSLSCFXO"
+  },
+  "s3": {
+    "REGION": "us-east-1",
+    "BUCKET": "coinfluence"
   }
 }  

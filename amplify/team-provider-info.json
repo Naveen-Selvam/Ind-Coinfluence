@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-indcoinfluence-dev-103719-authRole",
+      "UnauthRoleArn": "arn:aws:iam::603838691441:role/amplify-indcoinfluence-dev-103719-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::603838691441:role/amplify-indcoinfluence-dev-103719-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-indcoinfluence-dev-103719-deployment",
+      "UnauthRoleName": "amplify-indcoinfluence-dev-103719-unauthRole",
+      "StackName": "amplify-indcoinfluence-dev-103719",
+      "StackId": "arn:aws:cloudformation:us-east-1:603838691441:stack/amplify-indcoinfluence-dev-103719/325bb0e0-0499-11ec-a60b-12e727a79a85",
+      "AmplifyAppId": "d7ybq6kkuuzwq"
+    },
+    "categories": {
+      "auth": {
+        "indcoinfluence50f5cc63": {}
+      }
+    }
+  }
+}

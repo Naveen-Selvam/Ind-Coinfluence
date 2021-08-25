@@ -29,105 +29,102 @@ const ForgotPassword = (props) => {
   };
 
   return (
-
-    <div className='form-background'>
-      <div className='form-container'>
-        <Row type="flex" justify="center" align="center">
-          <div className='logo'>
-            <img src={logo} alt='logo' className='logo__image'/>
-            <h1 className='logo__title'>COINFLUENCE</h1>
-          </div>
-          <Form
-            name='basic'
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={onFinish}
+    <div className='form-container'>
+      <Row type="flex" justify="center" align="center">
+        <div className='logo'>
+          <img src={logo} alt='logo' className='logo__image'/>
+          <h1 className='logo__title'>COINFLUENCE</h1>
+        </div>
+        <Form
+          name='basic'
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+        >
+          <h2>Verify your email</h2>
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              {
+                type: 'email',
+                message: 'The input is not valid E-mail!',
+              },
+              {
+                required: true,
+                message: 'Please input your E-mail!',
+              },
+            ]}
           >
-            <h2>Verify your email</h2>
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[
-                {
-                  type: 'email',
-                  message: 'The input is not valid E-mail!',
-                },
-                {
-                  required: true,
-                  message: 'Please input your E-mail!',
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            {
-              verficationCode &&
-                <div>
-                  <Alert
-                    banner
-                    message={error ? error : 'Verification code sent to Email-id'}
-                    type={error ? 'error' : 'success'}
-                    showIcon
-                  />
-                  <Form.Item
-                    label="Verification Code"
-                    name="verificationCode"
-                    rules={[
-                      {
-                        required: true,
-                        message: 'Enter the verification code',
-                      },
-                    ]}
-                  >
-                    <Input />
-                  </Form.Item>
+            <Input />
+          </Form.Item>
+          {
+            verficationCode &&
+              <div>
+                <Alert
+                  banner
+                  message={error ? error : 'Verification code sent to Email-id'}
+                  type={error ? 'error' : 'success'}
+                  showIcon
+                />
+                <Form.Item
+                  label="Verification Code"
+                  name="verificationCode"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Enter the verification code',
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
 
-                  <Form.Item
-                    name="newPassword"
-                    label="New Password"
-                    rules={[
-                      {
-                        required: true,
-                        message: 'Enter your password!',
-                      },
-                    ]}
-                  >
-                    <Input.Password />
-                  </Form.Item>
+                <Form.Item
+                  name="newPassword"
+                  label="New Password"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Enter your password!',
+                    },
+                  ]}
+                >
+                  <Input.Password />
+                </Form.Item>
 
-                  <Form.Item
-                    name="confirm"
-                    label="Confirm Password"
-                    dependencies={['password']}
-                    rules={[
-                      {
-                        required: true,
-                        message: 'Enter your password!'
+                <Form.Item
+                  name="confirm"
+                  label="Confirm Password"
+                  dependencies={['password']}
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Enter your password!'
+                    },
+                    ({ getFieldValue }) => ({
+                      validator(rule, value) {
+                        if (!value || getFieldValue('newPassword') === value) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject('Password does not match!');
                       },
-                      ({ getFieldValue }) => ({
-                        validator(rule, value) {
-                          if (!value || getFieldValue('newPassword') === value) {
-                            return Promise.resolve();
-                          }
-                          return Promise.reject('Password does not match!');
-                        },
-                      }),
-                    ]}
-                  >
-                    <Input.Password />
-                  </Form.Item>
-                </div>
-            }
+                    }),
+                  ]}
+                >
+                  <Input.Password />
+                </Form.Item>
+              </div>
+          }
 
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                submit
-              </Button>
-            </Form.Item>
-          </Form>
-        </Row>
-      </div>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Row>
     </div>
   );
 };

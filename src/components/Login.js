@@ -27,7 +27,7 @@ const Login = (props) => {
       });
       if(Result) {
         props.history.push({
-          pathname: '/dashboard',
+          pathname: '/welcome',
           state: { detail: 'Logged in Successfully' }
         });
         props.authenticationStatus();
@@ -38,77 +38,75 @@ const Login = (props) => {
   };
 
   return (
-    <div className='form-background'>
-      <div className='form-container'>
-        <Row type="flex" justify="center" align="center">
-          <div className='logo'>
-            <img src={logo} alt='logo'/>
-            <h1 className='logo__title'>COINFLUENCE</h1>
-          </div>
-          <Form
-            name="basic"
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={onFinish}
+    <div className='form-container'>
+      <Row type="flex" justify="center" align="center">
+        <div className='logo'>
+          <img src={logo} alt='logo'/>
+          <h1 className='logo__title'>COINFLUENCE</h1>
+        </div>
+        <Form
+          name="basic"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+        >
+          <h2>Sign In</h2>
+          {
+            error &&
+            <Alert
+              banner
+              message={error}
+              type='error'
+              showIcon
+            />
+          }
+          <Form.Item
+            label="Email"
+            name="email"
+            hasFeedback
+            rules={[
+              {
+                required: true,
+                message: 'Enter your E-mail!',
+              },
+            ]}
           >
-            <h2>Sign In</h2>
-            {
-              error &&
-              <Alert
-                banner
-                message={error}
-                type='error'
-                showIcon
-              />
-            }
-            <Form.Item
-              label="Email"
-              name="email"
-              hasFeedback
-              rules={[
-                {
-                  required: true,
-                  message: 'Enter your E-mail!',
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
+            <Input />
+          </Form.Item>
 
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[
-                {
-                  required: true,
-                  message: 'Enter your password!',
-                },
-              ]}
-            >
-              <Input.Password />
-            </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: 'Enter your password!',
+              },
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
 
-            <Link to='/forgotpassword'><h5>Forgot Password?</h5></Link>
+          <Link to='/forgotpassword'><h5>Forgot Password?</h5></Link>
 
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                Sign In
-              </Button>
-            </Form.Item>
-            <h5>Don't have an account? <Link to='/register'>Click here</Link></h5>
-            {
-              alertMsgStatus &&
-              <Alert
-                banner
-                message={props.location.state.detail}
-                type='success'
-                showIcon
-              />
-            }
-          </Form>
-        </Row>
-      </div>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Sign In
+            </Button>
+          </Form.Item>
+          <h5>Don't have an account? <Link to='/register'>Click here</Link></h5>
+          {
+            alertMsgStatus &&
+            <Alert
+              banner
+              message={props.location.state.detail}
+              type='success'
+              showIcon
+            />
+          }
+        </Form>
+      </Row>
     </div>
   );
 };

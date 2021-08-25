@@ -1,6 +1,6 @@
 import React,{ useState } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
+import Welcome from './components/Welcome';
 import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
@@ -25,7 +25,7 @@ const App = () => {
       {
         !isAuthenticated
           ? <Redirect to='/login'/>
-          : <Route path="/dashboard" exact component={Dashboard} />
+          : <Route path="/welcome" exact component={Welcome} />
       }
 
     </div>
